@@ -1,0 +1,61 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+uploads/
+/uploads/
+uploads/evidence/
+/uploads/evidence/
+
+# Environment files and local property overrides
+.env
+.env*.local
+*.env
+!*.env.example
+application-local.properties
+*local.properties
+
+# Logs
+logs/
+*.log
+
+# Scratch test harnesses
+src/test/*.ps1
+/src/test/*.ps1
+
+# Database and temporary files
+*.db
+*.sqlite
+*.sqlite3
+*.tmp
+*.bak
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/

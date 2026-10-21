@@ -1,0 +1,12 @@
+package com.nirvaha.nirvaha_backend.entity;
+
+public enum NotificationEventType {
+    INCIDENT_ASSIGNED,
+    STATUS_CHANGED,
+    RESOLUTION_SUBMITTED,
+    RESOLUTION_CONFIRMED,
+    RESOLUTION_DISPUTED,
+    DISPUTE_REVIEWED,
+    SERVICE_TARGET_APPROACHING,
+    SERVICE_TARGET_EXCEEDED
+}
