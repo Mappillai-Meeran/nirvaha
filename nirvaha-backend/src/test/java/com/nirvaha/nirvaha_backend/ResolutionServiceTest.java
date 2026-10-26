@@ -270,4 +270,34 @@ class ResolutionServiceTest {
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessageContaining("Incident with ID 99999 not found");
     }
+
+    @Test
+    void test13_shouldRejectBlankResolutionRemarks() {
+        assertThatThrownBy(() -> resolutionService.createResolution(incidentId, new CreateResolutionRequest(
+                officerId, resolutionEvidenceId, "   "
+        )))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Resolution notes/remarks are required and cannot be blank");
+    }
+
+    @Test
+    void test14_shouldRejectResolutionForAlreadyResolvedIncident() {
+        // First resolution succeeds
+        resolutionService.createResolution(incidentId, new CreateResolutionRequest(
+                officerId, resolutionEvidenceId, "First valid resolution"
+        ));
+
+        // Create new evidence
+        EvidenceResponse ev2 = evidenceService.createEvidence(new CreateEvidenceRequest(
+                incidentId, EvidenceType.PHOTO, "http://example.com/rep2.jpg",
+                "rep2.jpg", "image/jpeg", 1024L, LocalDateTime.now(),
+                new BigDecimal("11.9416"), new BigDecimal("79.8083"), "Second photo"
+        ));
+
+        // Resolving an already resolved incident must fail
+        assertThatThrownBy(() -> resolutionService.createResolution(incidentId, new CreateResolutionRequest(
+                officerId, ev2.getId(), "Second resolution attempt"
+        )))
+                .isInstanceOf(Exception.class);
+    }
 }

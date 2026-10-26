@@ -127,6 +127,34 @@ class IntegrityAnomalyServiceTest {
 
     // --- Rule 2: Bulk Closure Tests ---
 
+    private void attachResolutionEvidence(Long incId, Long officerId, String remarks) {
+        Incident incident = incidentRepository.findById(incId).orElseThrow();
+        User officer = userRepository.findById(officerId).orElseThrow();
+
+        Evidence ev = new Evidence();
+        ev.setIncident(incident);
+        ev.setEvidenceType(EvidenceType.PHOTO);
+        ev.setFileUrl("https://storage.nirvaha.gov.in/test/bulk-res-" + incId + ".jpg");
+        ev.setFileName("bulk-res-" + incId + ".jpg");
+        ev.setMimeType("image/jpeg");
+        ev.setFileSize(204800L);
+        ev.setLatitude(incident.getLatitude());
+        ev.setLongitude(incident.getLongitude());
+        ev.setCreatedAt(LocalDateTime.now());
+        Evidence savedEv = evidenceRepository.save(ev);
+
+        Resolution res = new Resolution();
+        res.setIncident(incident);
+        res.setOfficer(officer);
+        res.setResolutionEvidence(savedEv);
+        res.setResolutionSimilarityScore(0.95);
+        res.setVerificationStatus(VerificationStatus.VERIFIED);
+        res.setRemarks(remarks != null ? remarks : "Resolution completed with verified evidence");
+        res.setCreatedAt(LocalDateTime.now());
+        res.setUpdatedAt(LocalDateTime.now());
+        resolutionRepository.save(res);
+    }
+
     @Test
     void testBulkClosure_5ResolutionsWithin60Minutes_TriggersAnomaly() {
         IncidentCategory[] categories = {IncidentCategory.POTHOLE, IncidentCategory.DRAINAGE, IncidentCategory.GARBAGE, IncidentCategory.STREETLIGHT, IncidentCategory.WATER_SUPPLY};
@@ -137,6 +165,7 @@ class IntegrityAnomalyServiceTest {
             IncidentResponse inc = createIncident("Issue " + i, categories[i], lat, lng);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.VERIFIED, "Verified"));
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officer1Id, "Resolved ticket " + i);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.RESOLVED, "Resolved ticket " + i));
             if (i == 4) {
                 targetInc = inc;
@@ -161,6 +190,8 @@ class IntegrityAnomalyServiceTest {
             BigDecimal lng = new BigDecimal(70 + i + ".000000");
             IncidentResponse inc = createIncident("Issue Bulk " + i, categories[i], lat, lng);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.VERIFIED, "Verified"));
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officer1Id, "Resolved ticket " + i);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.RESOLVED, "Resolved ticket " + i));
             if (i == 5) {
                 targetInc = inc;
@@ -184,6 +215,8 @@ class IntegrityAnomalyServiceTest {
             BigDecimal lng = new BigDecimal(70 + i + ".000000");
             IncidentResponse inc = createIncident("Issue " + i, categories[i], lat, lng);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.VERIFIED, "Verified"));
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officer1Id, "Resolved ticket " + i);
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.RESOLVED, "Resolved ticket " + i));
             if (i == 3) {
                 targetInc = inc;
@@ -235,6 +268,9 @@ class IntegrityAnomalyServiceTest {
             BigDecimal lat = new BigDecimal(10 + i + ".000000");
             BigDecimal lng = new BigDecimal(70 + i + ".000000");
             IncidentResponse inc = createIncident("Off1 Issue " + i, categories[i], lat, lng);
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.VERIFIED, "Verified"));
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officer1Id, "Resolved");
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer1Id, ActionType.RESOLVED, "Resolved"));
         }
         IncidentResponse targetInc = null;
@@ -242,6 +278,9 @@ class IntegrityAnomalyServiceTest {
             BigDecimal lat = new BigDecimal(10 + i + ".000000");
             BigDecimal lng = new BigDecimal(70 + i + ".000000");
             IncidentResponse inc = createIncident("Off2 Issue " + i, categories[i], lat, lng);
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer2Id, ActionType.VERIFIED, "Verified"));
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer2Id, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officer2Id, "Resolved");
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officer2Id, ActionType.RESOLVED, "Resolved"));
             targetInc = inc;
         }

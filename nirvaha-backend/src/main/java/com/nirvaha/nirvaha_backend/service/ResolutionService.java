@@ -49,6 +49,16 @@ public class ResolutionService {
 
     @Transactional
     public ResolutionResponse createResolution(Long incidentId, CreateResolutionRequest request) {
+        if (request == null) {
+            throw new IllegalArgumentException("Resolution request must not be null");
+        }
+        if (request.getRemarks() == null || request.getRemarks().trim().isEmpty()) {
+            throw new IllegalArgumentException("Resolution notes/remarks are required and cannot be blank");
+        }
+        if (request.getEvidenceId() == null) {
+            throw new IllegalArgumentException("Resolution evidence ID is required");
+        }
+
         Incident incident = incidentRepository.findById(incidentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Incident with ID " + incidentId + " not found"));
 
@@ -56,13 +66,17 @@ public class ResolutionService {
             throw new DuplicateResourceException("Resolution already submitted for incident ID " + incidentId);
         }
 
-        User officer = getAuthenticatedUserOrFallback(request != null ? request.getOfficerId() : null);
+        User officer = getAuthenticatedUserOrFallback(request.getOfficerId());
         if (officer.getRole() != UserRole.OFFICER && officer.getRole() != UserRole.ADMIN) {
             throw new IllegalArgumentException("User " + officer.getId() + " is not authorized to submit resolution evidence");
         }
 
         Evidence resolutionEvidence = evidenceRepository.findById(request.getEvidenceId())
                 .orElseThrow(() -> new ResourceNotFoundException("Evidence with ID " + request.getEvidenceId() + " not found"));
+
+        if (resolutionEvidence.getFileUrl() == null || resolutionEvidence.getFileUrl().trim().isEmpty()) {
+            throw new IllegalArgumentException("Resolution evidence must contain a valid file URL");
+        }
 
         if (resolutionEvidence.getIncident() == null || !resolutionEvidence.getIncident().getId().equals(incidentId)) {
             throw new IllegalArgumentException("Evidence ID " + request.getEvidenceId() + " does not belong to incident " + incidentId);
@@ -72,8 +86,12 @@ public class ResolutionService {
             throw new IllegalArgumentException("Resolution evidence cannot be submitted for an unverified REPORTED incident");
         }
 
+        if (incident.getStatus() == IncidentStatus.RESOLVED) {
+            throw new InvalidWorkflowException("Incident ID " + incidentId + " is already RESOLVED");
+        }
+
         List<Evidence> originalEvidences = evidenceRepository.findByIncidentId(incidentId);
-        double similarityScore = calculateVisualSimilarity(originalEvidences, resolutionEvidence);
+        double similarityScore = calculateSimilarityScore(originalEvidences, resolutionEvidence);
 
         VerificationStatus verificationStatus;
         if (similarityScore >= 0.75) {
@@ -84,7 +102,7 @@ public class ResolutionService {
             verificationStatus = VerificationStatus.FAILED;
         }
 
-        String finalRemarks = request.getRemarks() != null ? request.getRemarks() : "";
+        String finalRemarks = request.getRemarks().trim();
         if (verificationStatus == VerificationStatus.VERIFIED) {
             finalRemarks += " (Evidence supports resolution)";
         } else if (verificationStatus == VerificationStatus.MANUAL_REVIEW) {
@@ -169,7 +187,12 @@ public class ResolutionService {
                 .orElseThrow(() -> new ResourceNotFoundException("User with ID " + requestOfficerId + " not found"));
     }
 
-    private double calculateVisualSimilarity(List<Evidence> originals, Evidence resolutionEvidence) {
+    /**
+     * Calculates spatial and metadata correlation heuristic between original evidence and resolution evidence.
+     * Note: This computes geographic proximity (Haversine formula within 500m) and file-size metadata heuristics;
+     * it does NOT perform computer-vision or pixel-level image comparison.
+     */
+    private double calculateSimilarityScore(List<Evidence> originals, Evidence resolutionEvidence) {
         if (originals == null || originals.isEmpty() || resolutionEvidence == null) {
             return 0.50;
         }

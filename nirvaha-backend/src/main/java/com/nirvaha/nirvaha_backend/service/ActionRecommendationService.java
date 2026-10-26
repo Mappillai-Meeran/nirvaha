@@ -67,7 +67,7 @@ public class ActionRecommendationService {
 
         if (failedVerification) {
             recommendedAction = RecommendedActionType.REOPEN_CASE;
-            reason = "Resolution evidence failed verification. Similarity or visual proof insufficient.";
+            reason = "Resolution evidence failed verification. Spatial or metadata verification insufficient.";
             suggestedNextStep = "Reopen incident and request field officer re-inspection with verified photographic proof.";
             supportingSignals.add("Resolution Verification Failed");
         } else if (hasOpenAnomalies) {

@@ -34,8 +34,10 @@ const AppRoutes = () => {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/citizen/report" element={<ProtectedRoute allowedRoles={[ROLES.CITIZEN]}><CitizenReport /></ProtectedRoute>} />
+      <Route path="/report" element={<Navigate to="/citizen/report" replace />} />
       <Route path="/citizen/my-reports" element={<ProtectedRoute allowedRoles={[ROLES.CITIZEN]}><MyReports /></ProtectedRoute>} />
       <Route path="/command-center" element={<ProtectedRoute allowedRoles={[ROLES.OFFICER, ROLES.ADMIN]}><CommandCenter /></ProtectedRoute>} />
+      <Route path="/command" element={<Navigate to="/command-center" replace />} />
       <Route path="/command-center/queue" element={<ProtectedRoute allowedRoles={[ROLES.OFFICER, ROLES.ADMIN]}><PriorityQueue /></ProtectedRoute>} />
       <Route path="/command-center/anomalies" element={<ProtectedRoute allowedRoles={[ROLES.OFFICER, ROLES.ADMIN]}><IntegrityRadar /></ProtectedRoute>} />
       <Route path="/incidents/:id" element={<ProtectedRoute allowedRoles={[ROLES.CITIZEN, ROLES.OFFICER, ROLES.ADMIN]}><IncidentDetail /></ProtectedRoute>} />

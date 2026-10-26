@@ -135,8 +135,14 @@ public class IncidentWorkflowService {
 
         // Confirm incident cannot become resolved without required resolution evidence
         Resolution resolution = resolutionRepository.findTopByIncidentIdOrderByCreatedAtDesc(incidentId).orElse(null);
-        if (resolution == null || resolution.getResolutionEvidence() == null || resolution.getVerificationStatus() == com.nirvaha.nirvaha_backend.entity.VerificationStatus.FAILED) {
+        if (resolution == null || resolution.getResolutionEvidence() == null
+                || resolution.getResolutionEvidence().getFileUrl() == null
+                || resolution.getResolutionEvidence().getFileUrl().trim().isEmpty()
+                || resolution.getVerificationStatus() == com.nirvaha.nirvaha_backend.entity.VerificationStatus.FAILED) {
             throw new InvalidWorkflowException("Cannot resolve incident: verified resolution evidence must be submitted first");
+        }
+        if (resolution.getRemarks() == null || resolution.getRemarks().trim().isEmpty()) {
+            throw new InvalidWorkflowException("Cannot resolve incident: resolution notes must not be blank");
         }
 
         incident.setStatus(IncidentStatus.RESOLVED);
@@ -158,6 +164,9 @@ public class IncidentWorkflowService {
             }
             incident.setStatus(IncidentStatus.VERIFIED);
         } else if (request.getActionType() == ActionType.VERIFIED) {
+            if (incident.getStatus() == IncidentStatus.RESOLVED) {
+                throw new InvalidWorkflowException("Cannot mark a resolved incident as verified. Reopen it first.");
+            }
             incident.setStatus(IncidentStatus.VERIFIED);
         } else if (request.getActionType() == ActionType.STARTED) {
             if (incident.getStatus() != IncidentStatus.VERIFIED && incident.getStatus() != IncidentStatus.REPORTED) {
@@ -172,10 +181,23 @@ public class IncidentWorkflowService {
             if (request.getRemarks() == null || request.getRemarks().trim().isEmpty()) {
                 throw new IllegalArgumentException("Meaningful remarks are required to resolve an incident");
             }
+            if (incident.getStatus() != IncidentStatus.IN_PROGRESS) {
+                throw new InvalidWorkflowException("Incident can only be resolved when it is IN_PROGRESS. Current status: " + incident.getStatus());
+            }
+            Resolution resolution = resolutionRepository.findTopByIncidentIdOrderByCreatedAtDesc(incidentId).orElse(null);
+            if (resolution == null || resolution.getResolutionEvidence() == null
+                    || resolution.getResolutionEvidence().getFileUrl() == null
+                    || resolution.getResolutionEvidence().getFileUrl().trim().isEmpty()
+                    || resolution.getVerificationStatus() == VerificationStatus.FAILED) {
+                throw new InvalidWorkflowException("Cannot resolve incident: verified resolution evidence must be submitted first");
+            }
             incident.setStatus(IncidentStatus.RESOLVED);
         } else if (request.getActionType() == ActionType.REOPENED) {
             if (incident.getStatus() != IncidentStatus.RESOLVED) {
-                throw new IllegalArgumentException("Only RESOLVED incidents can be reopened");
+                Resolution resolution = resolutionRepository.findTopByIncidentIdOrderByCreatedAtDesc(incidentId).orElse(null);
+                if (resolution == null || resolution.getVerificationStatus() != VerificationStatus.FAILED) {
+                    throw new IllegalArgumentException("Only RESOLVED incidents can be reopened (or incidents with failed resolution verification)");
+                }
             }
             incident.setStatus(IncidentStatus.REPORTED);
         }

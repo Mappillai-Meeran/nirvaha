@@ -124,4 +124,20 @@ class ResolutionControllerTest {
                 .andExpect(jsonPath("$.status").value(400))
                 .andExpect(jsonPath("$.message").value("User with ID 2 is not authorized to submit resolution evidence"));
     }
+
+    @Test
+    void shouldReturn400WhenRemarksAreBlank() throws Exception {
+        String jsonPayload = """
+                {
+                    "officerId": 4,
+                    "evidenceId": 25,
+                    "remarks": "   "
+                }
+                """;
+
+        mockMvc.perform(post("/api/incidents/10/resolutions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonPayload))
+                .andExpect(status().isBadRequest());
+    }
 }

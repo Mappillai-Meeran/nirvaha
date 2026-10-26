@@ -17,6 +17,12 @@ export const Login = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const DEMO_PRESETS = [
+    { role: 'Citizen', email: 'citizen@puducherry.gov.in', password: 'Citizen123!' },
+    { role: 'Officer', email: 'officer@puducherry.gov.in', password: 'Officer123!' },
+    { role: 'Admin', email: 'admin@puducherry.gov.in', password: 'Admin123!' },
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -48,6 +54,28 @@ export const Login = () => {
           </div>
           <h2 className="text-xl font-bold text-[#18201F]">Nirvaha Account Login</h2>
           <p className="text-xs text-[#66716E]">Authenticated access for citizens, officers, and administrators</p>
+        </div>
+
+        <div className="bg-[#F5F7F6] border border-[#D9DEDB] p-2.5 rounded-lg space-y-1.5">
+          <span className="block text-[11px] font-bold text-[#18201F] uppercase tracking-wider text-center">
+            Demo Quick-Fill
+          </span>
+          <div className="grid grid-cols-3 gap-2">
+            {DEMO_PRESETS.map((preset) => (
+              <button
+                key={preset.role}
+                type="button"
+                onClick={() => {
+                  setEmail(preset.email);
+                  setPassword(preset.password);
+                  setError(null);
+                }}
+                className="py-1 px-2 bg-white hover:bg-[#EBF2F1] text-[#163A36] hover:text-[#2F6F68] font-semibold rounded border border-[#D9DEDB] text-xs transition text-center shadow-xs"
+              >
+                {preset.role}
+              </button>
+            ))}
+          </div>
         </div>
 
         {error && (

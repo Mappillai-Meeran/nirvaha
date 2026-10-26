@@ -232,23 +232,23 @@ Nirvaha is a fully functional web application consisting of a **Spring Boot 4 RE
 
 ### Key Working Views in the Prototype
 
-1. **Citizen Incident Reporting Portal (`/report`):**
+1. **Citizen Incident Reporting Portal (`/citizen/report`):**
    - Clean, accessible citizen form supporting native Tamil, Hindi, Malayalam, Telugu, and English.
    - Interactive GIS location picker with automatic latitude/longitude capture.
    - Live photo attachment with client-side preview and file validation.
-2. **Executive Command Center (`/command`):**
+2. **Executive Command Center (`/command-center`):**
    - High-level municipal KPI cockpit: Active Incidents, Saturated Wards, SLA Breaches, and Duplicate Ratio.
    - Live Leaflet GIS map with color-coded incident pins, ward boundaries, and cluster zones.
    - Integrated Monsoon Stress Simulator to test drainage capacity under varying rainfall intensities.
-3. **Municipal Priority Queue (`/priority-queue`):**
+3. **Municipal Priority Queue (`/command-center/queue`):**
    - Explainable priority cards sorted by dynamic urgency score ($P \in [0, 1]$).
    - Clear factor breakdowns: Category Severity, Spatial Cluster Size, Weather Risk Context, and Hours Remaining.
    - Quick-action buttons for officers to accept, modify, or reassign cases.
-4. **Duplicate & Equity Radar (`/integrity-radar`):**
+4. **Duplicate & Equity Radar (`/command-center/anomalies`):**
    - Real-time visualization of 500m incident clusters.
    - Corroborating citizen report lists grouped under primary master tickets.
    - Anomaly review alerts flagging rapid-burst submissions for human verification.
-5. **Resolution Evidence Verification (`/incident/:id`):**
+5. **Resolution Evidence Verification (`/incidents/:id`):**
    - Interactive before-and-after photographic evidence comparison slider.
    - Cryptographic verification stamp (SHA-256 hash, upload timestamp, officer identity).
    - Citizen dispute trigger allowing residents to reject incomplete work.
@@ -258,11 +258,11 @@ To view authentic visuals of the platform in action, evaluators can launch the a
 
 | Screenshot Identifier | Page Route | Recommended Viewport & Key State to Capture |
 | :--- | :--- | :--- |
-| `01_citizen_reporting.png` | `http://localhost:5173/report` | Desktop viewport (1280x800) showing Tamil/English toggle, GIS map pin in Krishna Nagar, and photo upload preview. |
-| `02_command_center.png` | `http://localhost:5173/command` | Full command dashboard showing KPI widgets, active GIS incident map with ward boundaries, and monsoon alert bar. |
-| `03_priority_queue.png` | `http://localhost:5173/priority-queue` | Priority ranking list highlighting explainable score breakdown tags (`+0.25 Rainfall Alert`, `+0.20 Cluster Corroboration`). |
-| `04_duplicate_radar.png` | `http://localhost:5173/command` | Duplicate cluster inspection modal showing 5 citizen reports grouped under 1 master drainage incident. |
-| `05_resolution_proof.png` | `http://localhost:5173/incident/1` | Incident detail view showing pre-action blocked drain photo alongside post-action cleared drain photo with SHA-256 stamp. |
+| `01_citizen_reporting.png` | `http://localhost:5173/citizen/report` | Desktop viewport (1280x800) showing Tamil/English toggle, GIS map pin in Krishna Nagar, and photo upload preview. |
+| `02_command_center.png` | `http://localhost:5173/command-center` | Full command dashboard showing KPI widgets, active GIS incident map with ward boundaries, and monsoon alert bar. |
+| `03_priority_queue.png` | `http://localhost:5173/command-center/queue` | Priority ranking list highlighting explainable score breakdown tags (`+0.25 Rainfall Alert`, `+0.20 Cluster Corroboration`). |
+| `04_duplicate_radar.png` | `http://localhost:5173/command-center/anomalies` | Duplicate cluster inspection modal showing 5 citizen reports grouped under 1 master drainage incident. |
+| `05_resolution_proof.png` | `http://localhost:5173/incidents/1` | Incident detail view showing pre-action blocked drain photo alongside post-action cleared drain photo with SHA-256 stamp. |
 
 *(All UI assets and vector icons are maintained in [`nirvaha-frontend/src/assets/`](nirvaha-frontend/src/assets/) and [`nirvaha-frontend/public/`](nirvaha-frontend/public/)).*
 
@@ -462,24 +462,24 @@ docker compose up --build
 ### Guided 5-Minute Demonstration Sequence for Evaluators
 
 1. **Access the Citizen Portal:**
-   - Open `http://localhost:5173/` and navigate to **Report an Issue** (`/report`).
+   - Open `http://localhost:5173/` and navigate to **Report an Issue** (`/citizen/report`).
    - Switch language to **Tamil (à®¤à®®à®¿à®´à¯)** or **Hindi (à¤¹à¤¿à¤¨à¥à¤¦à¥€)** using the top navigation bar.
    - Enter a drainage issue: *"Water overflowing from blocked canal near Krishna Nagar junction"*.
    - Click the interactive map to place a pin in Krishna Nagar; attach any sample JPEG/PNG photo.
    - Click **Submit Report**. Observe that the report receives an immediate tracking ID and SHA-256 evidence hash.
 2. **Explore the Government Command Center:**
-   - Navigate to `/command` (automatically authenticated in demo mode or login with `officer@puducherry.gov.in` / `Officer123!`).
+   - Navigate to `/command-center` (automatically authenticated in demo mode or login with `officer@puducherry.gov.in` / `Officer123!`).
    - Inspect the **Ward Risk Leaderboard** and **GIS Command Map** displaying active incident pins.
    - Toggle the **Monsoon Stress Simulator** to observe real-time risk escalation under simulated heavy rainfall ($> 50\text{ mm/hr}$).
 3. **Inspect the Duplicate Clustering Radar:**
-   - Open `/integrity-radar`.
+   - Open `/command-center/anomalies`.
    - Observe how multiple simulated complaints in the same 500m catchment are automatically clustered into a single parent incident, displaying all corroborating citizen statements.
 4. **Review the Explainable Priority Queue:**
-   - Navigate to `/priority-queue`.
+   - Navigate to `/command-center/queue`.
    - Inspect the top-ranked incident card. Note the mathematical priority score and readable explanation chips (`+0.25 Rainfall Alert`, `+0.20 Corroborating Cluster`).
    - Click **Accept Recommendation** and enter an officer rationale (*"Dispatched PWD Desilting Crew 3"*).
 5. **Verify Resolution with Pre/Post Proof:**
-   - Navigate to an incident detail page (`/incident/1`).
+   - Navigate to an incident detail page (`/incidents/1`).
    - Review the pre-action photo alongside the post-action proof in the interactive comparison slider.
    - Inspect the cryptographic verification stamp. Click **Confirm Resolution** or simulate a **Citizen Dispute** to observe the automatic case reopening workflow.
 

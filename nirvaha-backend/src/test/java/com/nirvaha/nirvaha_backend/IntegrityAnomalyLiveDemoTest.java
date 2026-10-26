@@ -119,6 +119,34 @@ class IntegrityAnomalyLiveDemoTest {
         assertThat(response.getAnomalies().get(0).getSeverity()).isEqualTo(AnomalySeverity.HIGH);
     }
 
+    private void attachResolutionEvidence(Long incId, Long officerId, String remarks) {
+        Incident incident = incidentRepository.findById(incId).orElseThrow();
+        User officer = userRepository.findById(officerId).orElseThrow();
+
+        Evidence ev = new Evidence();
+        ev.setIncident(incident);
+        ev.setEvidenceType(EvidenceType.PHOTO);
+        ev.setFileUrl("https://storage.nirvaha.gov.in/test/demo-res-" + incId + ".jpg");
+        ev.setFileName("demo-res-" + incId + ".jpg");
+        ev.setMimeType("image/jpeg");
+        ev.setFileSize(204800L);
+        ev.setLatitude(incident.getLatitude());
+        ev.setLongitude(incident.getLongitude());
+        ev.setCreatedAt(LocalDateTime.now());
+        Evidence savedEv = evidenceRepository.save(ev);
+
+        Resolution res = new Resolution();
+        res.setIncident(incident);
+        res.setOfficer(officer);
+        res.setResolutionEvidence(savedEv);
+        res.setResolutionSimilarityScore(0.95);
+        res.setVerificationStatus(VerificationStatus.VERIFIED);
+        res.setRemarks(remarks != null ? remarks : "Resolution completed with verified evidence");
+        res.setCreatedAt(LocalDateTime.now());
+        res.setUpdatedAt(LocalDateTime.now());
+        resolutionRepository.save(res);
+    }
+
     @Test
     @DisplayName("Demo Scenario B: Suspicious Bulk Closures Detection")
     void demoScenarioB_BulkClosures() {
@@ -131,6 +159,8 @@ class IntegrityAnomalyLiveDemoTest {
                     citizenId, "Civic Ticket " + (i + 1), "Description " + (i + 1), categories[i], IncidentSeverity.LOW, lat, lng, "Location " + (i + 1)
             ));
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officerId, ActionType.VERIFIED, "Verified"));
+            incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officerId, ActionType.STARTED, "Started"));
+            attachResolutionEvidence(inc.getId(), officerId, "Quick administrative resolution " + (i + 1));
             incidentWorkflowService.addAction(inc.getId(), new CreateIncidentActionRequest(officerId, ActionType.RESOLVED, "Quick administrative resolution " + (i + 1)));
             if (i == 6) {
                 targetInc = inc;

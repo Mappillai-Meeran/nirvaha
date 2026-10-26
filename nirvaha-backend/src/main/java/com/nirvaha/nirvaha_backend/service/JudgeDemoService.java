@@ -341,14 +341,7 @@ public class JudgeDemoService {
                 "Trench backfilled and compacted"
         ));
 
-        // Mark incident as RESOLVED upon contractor completion submission
-        incidentWorkflowService.addAction(saved.getId(), new CreateIncidentActionRequest(
-                demoOfficer.getId(),
-                ActionType.RESOLVED,
-                "Contractor reported trench repair complete and submitted closure photo."
-        ));
-
-        // Reopen Case via IncidentWorkflowService due to verification failure
+        // Reopen Case via IncidentWorkflowService due to algorithmic verification failure
         incidentWorkflowService.addAction(saved.getId(), new CreateIncidentActionRequest(
                 demoOfficer.getId(),
                 ActionType.REOPENED,

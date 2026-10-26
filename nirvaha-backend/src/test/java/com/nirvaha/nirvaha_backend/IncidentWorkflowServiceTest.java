@@ -154,11 +154,41 @@ class IncidentWorkflowServiceTest {
         assertThat(response.getActionType()).isEqualTo(ActionType.PROGRESS_UPDATE);
     }
 
+    private void attachResolutionEvidence(Long incId, Long officerId, String remarks) {
+        Incident incident = incidentRepository.findById(incId).orElseThrow();
+        User officer = userRepository.findById(officerId).orElseThrow();
+
+        Evidence ev = new Evidence();
+        ev.setIncident(incident);
+        ev.setEvidenceType(EvidenceType.PHOTO);
+        ev.setFileUrl("https://storage.nirvaha.gov.in/test/res-" + incId + ".jpg");
+        ev.setFileName("res-" + incId + ".jpg");
+        ev.setMimeType("image/jpeg");
+        ev.setFileSize(204800L);
+        ev.setLatitude(incident.getLatitude());
+        ev.setLongitude(incident.getLongitude());
+        ev.setCreatedAt(java.time.LocalDateTime.now());
+        Evidence savedEv = evidenceRepository.save(ev);
+
+        Resolution res = new Resolution();
+        res.setIncident(incident);
+        res.setOfficer(officer);
+        res.setResolutionEvidence(savedEv);
+        res.setResolutionSimilarityScore(0.95);
+        res.setVerificationStatus(VerificationStatus.VERIFIED);
+        res.setRemarks(remarks != null ? remarks : "Resolution completed with verified evidence");
+        res.setCreatedAt(java.time.LocalDateTime.now());
+        res.setUpdatedAt(java.time.LocalDateTime.now());
+        resolutionRepository.save(res);
+    }
+
     @Test
     void test6_shouldChangeStatusToResolved() {
         incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
                 officer1Id, ActionType.STARTED, "Work started"
         ));
+
+        attachResolutionEvidence(incidentId, officer1Id, "Pipeline replaced");
 
         incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
                 officer1Id, ActionType.RESOLVED, "Pipeline replaced, water supply fully restored."
@@ -169,7 +199,25 @@ class IncidentWorkflowServiceTest {
     }
 
     @Test
+    void test6b_shouldRejectResolutionActionWithoutEvidence() {
+        incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
+                officer1Id, ActionType.STARTED, "Work started"
+        ));
+
+        assertThatThrownBy(() -> incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
+                officer1Id, ActionType.RESOLVED, "Trying to resolve without evidence"
+        )))
+                .isInstanceOf(com.nirvaha.nirvaha_backend.exception.InvalidWorkflowException.class)
+                .hasMessageContaining("verified resolution evidence must be submitted first");
+    }
+
+    @Test
     void test7_shouldReopenResolvedIncidentToReported() {
+        incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
+                officer1Id, ActionType.STARTED, "Work started"
+        ));
+        attachResolutionEvidence(incidentId, officer1Id, "Issue fixed");
+
         incidentWorkflowService.addAction(incidentId, new CreateIncidentActionRequest(
                 officer1Id, ActionType.RESOLVED, "Issue fixed"
         ));

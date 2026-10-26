@@ -1,5 +1,6 @@
 package com.nirvaha.nirvaha_backend.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -11,6 +12,7 @@ public class CreateResolutionRequest {
     @NotNull(message = "Evidence ID is required")
     private Long evidenceId;
 
+    @NotBlank(message = "Remarks/resolution notes are required and cannot be blank")
     @Size(max = 2000, message = "Remarks cannot exceed 2000 characters")
     private String remarks;
 
