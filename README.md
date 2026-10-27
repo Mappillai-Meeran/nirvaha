@@ -1,4 +1,4 @@
-﻿# NIRVAHA â€” From Report to Resolution
+﻿# NIRVAHA — From Report to Resolution
 
 **Trust-Aware Civic Intelligence Platform for Verified Municipal Issue Resolution**
 
@@ -20,11 +20,11 @@
 | **Product Name** | **Nirvaha** (*Sanskrit: "Execution, Management, Carrying Through to Completion"*) |
 | **Tagline** | **From Report to Resolution** |
 | **Competition Track** | **Governance & Civic Technology** |
-| **Competition Context** | **VBYLD 2027 â€” Hack for Social Cause (Stage-I Submission)** & **Code for Communities 2.0** |
+| **Competition Context** | **VBYLD 2027 — Hack for Social Cause (Stage-I Submission)** & **Code for Communities 2.0** |
 | **Team Name** | **Team Dracarus** |
 | **Repository URL** | [https://github.com/Mappillai-Meeran/nirvaha](https://github.com/Mappillai-Meeran/nirvaha) |
 | **Primary Theme** | Smarter Cities, Civic Services, Public Service Delivery, Urban Infrastructure & Citizen Engagement |
-| **Core Vision** | *"Think Global, Hack Local â€” Technology for Social Transformation"* |
+| **Core Vision** | *"Think Global, Hack Local — Technology for Social Transformation"* |
 | **Local Focus** | Municipal civic issue reporting, drainage blockage, and urban waterlogging resolution in **Puducherry** |
 
 > **Core Principle:**
@@ -54,7 +54,7 @@ Across Indian urban local bodies (ULBs), municipal grievance redressal systems f
 - **The "Resolved on Paper" Paradox:** Citizens frequently experience complaints marked "Resolved" in official portals without physical work having occurred, eroding public trust in civic governance.
 
 ### The Local Context: Puducherry Coastal Drainage
-Puducherry's low-lying urban coastal terrain, flat topography, and aging canal network create chronic vulnerability to monsoon waterlogging and drainage bottlenecks. During northeast monsoon cloudbursts, key urban corridorsâ€”such as **Krishna Nagar** (low-elevation catchment), **Rainbow Nagar**, and sections of the Boulevard townâ€”experience rapid water stagnation when primary stormwater drains and canal outfalls (e.g., Grand Canal) become obstructed with silt or solid waste.
+Puducherry's low-lying urban coastal terrain, flat topography, and aging canal network create chronic vulnerability to monsoon waterlogging and drainage bottlenecks. During northeast monsoon cloudbursts, key urban corridors—such as **Krishna Nagar** (low-elevation catchment), **Rainbow Nagar**, and sections of the Boulevard town—experience rapid water stagnation when primary stormwater drains and canal outfalls (e.g., Grand Canal) become obstructed with silt or solid waste.
 
 Citizens report blocked drains, overflowing manholes, and stagnant water using varied colloquial descriptions in Tamil (`à®šà®¾à®•à¯à®•à®Ÿà¯ˆ à®…à®Ÿà¯ˆà®ªà¯à®ªà¯`, `à®µà¯†à®³à¯à®³à®®à¯`) or English. Municipal control rooms lack an automated mechanism to group these spatial clusters, cross-reference weather severity, and confirm that desilting or drainage repair was physically executed before closing the ticket.
 
@@ -62,8 +62,8 @@ Citizens report blocked drains, overflowing manholes, and stagnant water using v
 Nirvaha addresses the critical disconnect between **citizen reporting**, **municipal triage**, and **field resolution**. It provides municipal authorities with an objective, explainable decision-support cockpit that clusters complaints, ranks urgency with weather context, records officer rationales, and mandates photo-verified resolution before a case is officially closed.
 
 ```text
-CONVENTIONAL PORTALS:  Report â”€â”€â–º Passive Ticket â”€â”€â–º Unranked Queue â”€â”€â–º Unverified Closure ("Resolved on Paper")
-NIRVAHA CLOSED LOOP:   Report â”€â”€â–º Trust/Provenance â”€â”€â–º AI Cluster/Rank â”€â”€â–º Officer Action â”€â”€â–º Evidence Verification â”€â”€â–º Citizen Dispute / Closure
+CONVENTIONAL PORTALS:  Report ──► Passive Ticket ──► Unranked Queue ──► Unverified Closure ("Resolved on Paper")
+NIRVAHA CLOSED LOOP:   Report ──► Trust/Provenance ──► AI Cluster/Rank ──► Officer Action ──► Evidence Verification ──► Citizen Dispute / Closure
 ```
 
 *Note: Specific neighborhood references (e.g., Krishna Nagar, Rainbow Nagar, Muthialpet) represent illustrative local scenarios configured in Nirvaha's reference dataset. Nirvaha is an independent academic civic technology initiative and is not formally deployed by the Government of Puducherry.*
@@ -75,13 +75,13 @@ NIRVAHA CLOSED LOOP:   Report â”€â”€â–º Trust/Provenance â”€�
 Nirvaha replaces static ticketing with an **active civic intelligence pipeline**:
 
 ```
-CITIZEN REPORT â”€â”€â–º EVIDENCE TRUST â”€â”€â–º CIVIC INTELLIGENCE â”€â”€â–º MUNICIPAL ACTION â”€â”€â–º VERIFIED RESOLUTION â”€â”€â–º SYSTEMIC LEARNING
+CITIZEN REPORT ──► EVIDENCE TRUST ──► CIVIC INTELLIGENCE ──► MUNICIPAL ACTION ──► VERIFIED RESOLUTION ──► SYSTEMIC LEARNING
 ```
 
 ### Key Functional Capabilities
 
 1. **Native Multilingual Reporting:**
-   Citizens report issues in their native languageâ€”**English, Tamil (à®¤à®®à®¿à®´à¯), Hindi (à¤¹à¤¿à¤¨à¥à¤¦à¥€), Malayalam (à´®à´²à´¯à´¾à´³à´‚), or Telugu (à°¤à±†à°²à±à°—à±)**. The system preserves the original citizen statement verbatim for accountability while normalizing the report to standard municipal departments and categories.
+   Citizens report issues in their native language—**English, Tamil (à®¤à®®à®¿à®´à¯), Hindi (à¤¹à¤¿à¤¨à¥à¤¦à¥€), Malayalam (à´®à´²à´¯à´¾à´³à´‚), or Telugu (à°¤à±†à°²à±à°—à±)**. The system preserves the original citizen statement verbatim for accountability while normalizing the report to standard municipal departments and categories.
 2. **Evidence Trust & Provenance Engine:**
    Every uploaded photograph or document undergoes immediate server-side validation: MIME type enforcement, 10MB payload bounding, and cryptographic **SHA-256 integrity hashing**. Reports are spatially verified via geometric point-in-polygon checks against digitized municipal ward boundaries.
 3. **Spatial Duplicate Clustering Radar:**
@@ -158,10 +158,10 @@ flowchart TD
 
 ---
 
-## 6. Alignment with VBYLD 2027 â€” Hack for Social Cause
+## 6. Alignment with VBYLD 2027 — Hack for Social Cause
 
 The official VBYLD 2027 programme vision states:
-> **"Think Global, Hack Local â€” Technology for Social Transformation."**
+> **"Think Global, Hack Local — Technology for Social Transformation."**
 
 Nirvaha directly embodies this vision by addressing a concrete, localized municipal challenge in Puducherry while developing modular, open-source architectural patterns applicable to mid-sized urban local bodies worldwide.
 
@@ -176,27 +176,27 @@ Nirvaha is structured under the **Governance & Civic Technology** track. It focu
 While positioned firmly in Governance, Nirvaha leverages supporting emerging technologies:
 - **Spatial GIS:** Haversine clustering, digitized ward polygons, and OpenStreetMap road proximity references.
 - **Deterministic Language Intelligence:** Script range detection and multilingual dictionary mapping across 5 Indian languages.
-- **Integrity Analytics:** Multi-signal anomaly detection flagging unusual report bursts for human review (`ANOMALY DETECTED â€” REVIEW RECOMMENDED`).
+- **Integrity Analytics:** Multi-signal anomaly detection flagging unusual report bursts for human review (`ANOMALY DETECTED — REVIEW RECOMMENDED`).
 
 ### Alignment with UN Sustainable Development Goals (SDGs)
 
 ```
-        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-        â”‚       UN SUSTAINABLE DEVELOPMENT GOALS (SDGs)          â”‚
-        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                                   â”‚
-              â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-              â–¼                                         â–¼
-   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-   â”‚        SDG 11         â”‚                 â”‚        SDG 16         â”‚
-   â”‚   SUSTAINABLE CITIES  â”‚                 â”‚     PEACE, JUSTICE    â”‚
-   â”‚    & COMMUNITIES      â”‚                 â”‚  & STRONG INSTITUTIONSâ”‚
-   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-              â”‚                                         â”‚
-     â€¢ Target 11.5: Reduce impact              â€¢ Target 16.6: Develop
+        ┌────────────────────────────────────────────────────────┐
+        │       UN SUSTAINABLE DEVELOPMENT GOALS (SDGs)          │
+        └──────────────────────────┬─────────────────────────────┘
+                                   │
+              ┌────────────────────┴────────────────────┐
+              ▼                                         ▼
+   ┌───────────────────────┐                 ┌───────────────────────┐
+   │        SDG 11         │                 │        SDG 16         │
+   │   SUSTAINABLE CITIES  │                 │     PEACE, JUSTICE    │
+   │    & COMMUNITIES      │                 │  & STRONG INSTITUTIONS│
+   └──────────┬────────────┘                 └──────────┬────────────┘
+              │                                         │
+     • Target 11.5: Reduce impact              • Target 16.6: Develop
        of urban waterlogging &                   effective, accountable, &
        water-related civic hazards               transparent institutions
-     â€¢ Target 11.b: Integrated                 â€¢ Target 16.7: Responsive,
+     • Target 11.b: Integrated                 • Target 16.7: Responsive,
        urban disaster risk                       inclusive, & participatory
        management & drainage                     decision-making
 ```
@@ -299,7 +299,7 @@ flowchart TB
 
     subgraph DATA_TIER ["Persistence Tier (PostgreSQL 16 + Flyway 12.4.0)"]
         DB_FLYWAY["Flyway Migration Engine<br/>(V1__initial_schema.sql Baseline)"]
-        DB_TABLES[("PostgreSQL 16 Database<br/>19 Tables â€¢ 47 Indexes â€¢ 79 Constraints<br/>Incidents, Evidence, Wards, Decisions, Audit")]
+        DB_TABLES[("PostgreSQL 16 Database<br/>19 Tables • 47 Indexes • 79 Constraints<br/>Incidents, Evidence, Wards, Decisions, Audit")]
     end
 
     subgraph EXT_SERVICES ["External Context Adapters (Modular Interfaces)"]
@@ -493,7 +493,7 @@ Nirvaha is engineered with defensive civic tech principles:
    Automated priority scores and risk forecasts operate exclusively as decision support. The platform does not autonomously dispatch contractors or close tickets without authenticated officer action.
 2. **Defensive Language on Anomaly Flags:**
    When unusual submission patterns occur (e.g., rapid bursts from a single IP), the system flags the incident as:
-   `ANOMALY DETECTED â€” REVIEW RECOMMENDED`
+   `ANOMALY DETECTED — REVIEW RECOMMENDED`
    The platform never uses accusatory language such as "fraud" or "corrupt reporting," ensuring citizens are not unfairly disenfranchised.
 3. **Cryptographic Proof Chain:**
    All uploaded evidence photos receive a SHA-256 digest upon intake. This ensures that the resolution evidence submitted by municipal teams can be independently audited against timestamped records.
@@ -566,7 +566,7 @@ In adherence to academic and technical honesty, known boundaries of the current 
 | :--- | :--- | :--- |
 | **Judges' 2-Minute Quick Read** | [`docs/JUDGES_QUICK_READ.md`](docs/JUDGES_QUICK_READ.md) | High-speed executive briefing for competition juries. |
 | **Master Presentation Deck** | [`docs/VBYLD_2027_STAGE_I_PRESENTATION.md`](docs/VBYLD_2027_STAGE_I_PRESENTATION.md) | Official 7-slide presentation structure and pitch narrative. |
-| **Demo Scenario Script** | [`docs/VBYLD_2027_DEMO_SCRIPT.md`](docs/VBYLD_2027_DEMO_SCRIPT.md) | Step-by-step 3â€“5 minute demonstration protocol. |
+| **Demo Scenario Script** | [`docs/VBYLD_2027_DEMO_SCRIPT.md`](docs/VBYLD_2027_DEMO_SCRIPT.md) | Step-by-step 3–5 minute demonstration protocol. |
 | **Deterministic Demo Data** | [`docs/VBYLD_2027_DEMO_DATA.md`](docs/VBYLD_2027_DEMO_DATA.md) | Reference dataset covering Krishna Nagar drainage scenarios. |
 | **Full Architecture Specification** | [`docs/NIRVAHA_ARCHITECTURE.md`](docs/NIRVAHA_ARCHITECTURE.md) | Complete system architecture, data flow, and class contracts. |
 | **Technical One-Pager** | [`docs/VBYLD_2027_TECHNICAL_SUMMARY.md`](docs/VBYLD_2027_TECHNICAL_SUMMARY.md) | Dense engineering summary for technical evaluators. |
@@ -581,7 +581,7 @@ In adherence to academic and technical honesty, known boundaries of the current 
 ### Team Dracarus
 - **Track:** Governance & Civic Technology
 - **Project:** Nirvaha: Trust-Aware Civic Intelligence Platform for Verified Issue Resolution
-- **Target Programme:** VBYLD 2027 â€” Hack for Social Cause & Code for Communities 2.0
+- **Target Programme:** VBYLD 2027 — Hack for Social Cause & Code for Communities 2.0
 
 ### Hackathon Submission Checklist
 
@@ -592,7 +592,7 @@ In adherence to academic and technical honesty, known boundaries of the current 
 - [x] **Reproducible Test State:** 373 backend tests passing; frontend builds with 0 errors.
 - [x] **Database Migration Baseline:** Flyway 12.4.0 single canonical migration verified on clean PostgreSQL.
 - [x] **7-Slide Master Deck:** Comprehensive slide content prepared in [`docs/VBYLD_2027_STAGE_I_PRESENTATION.md`](docs/VBYLD_2027_STAGE_I_PRESENTATION.md).
-- [x] **Demonstration Video Script:** 3â€“5 minute structured walkthrough prepared in [`docs/VBYLD_2027_DEMO_SCRIPT.md`](docs/VBYLD_2027_DEMO_SCRIPT.md).
+- [x] **Demonstration Video Script:** 3–5 minute structured walkthrough prepared in [`docs/VBYLD_2027_DEMO_SCRIPT.md`](docs/VBYLD_2027_DEMO_SCRIPT.md).
 - [x] **Security & Integrity:** Zero secrets, zero production credentials, and zero runtime upload artifacts committed.
 
 ---
@@ -602,6 +602,6 @@ In adherence to academic and technical honesty, known boundaries of the current 
 This project is licensed under the terms of the **MIT License**. See the [LICENSE](LICENSE) file for complete details.
 
 ```text
-Copyright (c) 2026 Team Dracarus â€” NIRVAHA Project
+Copyright (c) 2026 Team Dracarus — NIRVAHA Project
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software...
 ```

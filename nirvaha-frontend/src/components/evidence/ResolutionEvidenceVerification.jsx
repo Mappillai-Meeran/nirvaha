@@ -403,30 +403,36 @@ export const ResolutionEvidenceVerification = ({
 
               {/* Photo Area */}
               <div className="relative bg-black/5 aspect-4/3 flex items-center justify-center overflow-hidden border-b border-[#D9DEDB]">
-                {originalEvidence && originalEvidence.fileUrl ? (
-                  <>
-                    <img 
-                      src={originalEvidence.fileUrl} 
-                      alt="Initial incident" 
-                      className="w-full h-full object-cover cursor-pointer hover:opacity-95 transition"
-                      onClick={() => setActiveLightboxImg({ url: originalEvidence.fileUrl, title: 'Original Citizen Evidence' })}
-                    />
-                    <button
-                      onClick={() => setActiveLightboxImg({ url: originalEvidence.fileUrl, title: 'Original Citizen Evidence' })}
-                      className="absolute bottom-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded text-[11px] flex items-center space-x-1 backdrop-blur-xs"
-                      title="Inspect full resolution"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Inspect</span>
-                    </button>
-                  </>
-                ) : (
-                  <div className="text-center p-6 text-[#66716E] space-y-2">
-                    <Camera className="w-8 h-8 mx-auto text-[#66716E]/40" />
-                    <p className="text-xs font-medium">No initial photo evidence uploaded</p>
-                    <p className="text-[10px] text-[#66716E]">Incident created via verbal / text report.</p>
-                  </div>
-                )}
+                {(() => {
+                  const beforeUrl = (originalEvidence && originalEvidence.fileUrl) ? originalEvidence.fileUrl : '/demo/before_drain.jpg';
+                  const isDemo = !(originalEvidence && originalEvidence.fileUrl);
+                  return (
+                    <>
+                      <img 
+                        src={beforeUrl} 
+                        alt="Initial incident" 
+                        className="w-full h-full object-cover cursor-pointer hover:opacity-95 transition"
+                        onClick={() => setActiveLightboxImg({ url: beforeUrl, title: 'Original Citizen Evidence' })}
+                      />
+                      <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-white font-mono text-[10px] font-semibold backdrop-blur-xs">
+                        Demo evidence
+                      </span>
+                      {isDemo && (
+                        <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-amber-600/80 text-white font-mono text-[9px] font-semibold backdrop-blur-xs">
+                          Showing representative civic issue photo
+                        </span>
+                      )}
+                      <button
+                        onClick={() => setActiveLightboxImg({ url: beforeUrl, title: 'Original Citizen Evidence' })}
+                        className="absolute bottom-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded text-[11px] flex items-center space-x-1 backdrop-blur-xs"
+                        title="Inspect full resolution"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Inspect</span>
+                      </button>
+                    </>
+                  );
+                })()}
               </div>
 
               {/* Evidence Metadata Drawer */}
@@ -514,41 +520,45 @@ export const ResolutionEvidenceVerification = ({
 
               {/* Photo Area */}
               <div className="relative bg-black/5 aspect-4/3 flex items-center justify-center overflow-hidden border-b border-[#D9DEDB]">
-                {resolutionEvidence && resolutionEvidence.fileUrl ? (
-                  <>
-                    <img 
-                      src={resolutionEvidence.fileUrl} 
-                      alt="Resolution evidence" 
-                      className="w-full h-full object-cover cursor-pointer hover:opacity-95 transition"
-                      onClick={() => setActiveLightboxImg({ url: resolutionEvidence.fileUrl, title: 'Field Resolution Evidence' })}
-                    />
-                    <button
-                      onClick={() => setActiveLightboxImg({ url: resolutionEvidence.fileUrl, title: 'Field Resolution Evidence' })}
-                      className="absolute bottom-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded text-[11px] flex items-center space-x-1 backdrop-blur-xs"
-                      title="Inspect full resolution"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Inspect</span>
-                    </button>
-                  </>
-                ) : (
-                  <div className="text-center p-6 text-[#66716E] space-y-2">
-                    <Camera className="w-8 h-8 mx-auto text-[#66716E]/40" />
-                    <p className="text-xs font-medium">No resolution photo submitted yet</p>
-                    <p className="text-[10px] text-[#66716E] max-w-xs">
-                      Field officer must upload photo evidence of completed remediation to trigger verification.
-                    </p>
-                    {(incident.status === 'IN_PROGRESS' || incident.status === 'ASSIGNED') && (
+                {(() => {
+                  const afterUrl = (resolutionEvidence && resolutionEvidence.fileUrl) ? resolutionEvidence.fileUrl : '/demo/after_drain.jpg';
+                  const isDemo = !(resolutionEvidence && resolutionEvidence.fileUrl);
+                  return (
+                    <>
+                      <img 
+                        src={afterUrl} 
+                        alt="Resolution evidence" 
+                        className="w-full h-full object-cover cursor-pointer hover:opacity-95 transition"
+                        onClick={() => setActiveLightboxImg({ url: afterUrl, title: 'Field Resolution Evidence' })}
+                      />
+                      <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/60 text-white font-mono text-[10px] font-semibold backdrop-blur-xs">
+                        Demo evidence
+                      </span>
+                      {isDemo && (
+                        <span className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-amber-600/80 text-white font-mono text-[9px] font-semibold backdrop-blur-xs">
+                          Resolution pending — showing expected outcome
+                        </span>
+                      )}
                       <button
-                        onClick={onOpenResolutionModal}
-                        className="mt-2 inline-flex items-center space-x-1 px-3 py-1.5 bg-[#163A36] text-white rounded text-xs font-bold hover:bg-[#2F6F68] transition"
+                        onClick={() => setActiveLightboxImg({ url: afterUrl, title: 'Field Resolution Evidence' })}
+                        className="absolute bottom-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded text-[11px] flex items-center space-x-1 backdrop-blur-xs"
+                        title="Inspect full resolution"
                       >
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>Upload Resolution Photo</span>
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Inspect</span>
                       </button>
-                    )}
-                  </div>
-                )}
+                      {isDemo && (incident.status === 'IN_PROGRESS' || incident.status === 'ASSIGNED') && (
+                        <button
+                          onClick={onOpenResolutionModal}
+                          className="absolute top-2 right-2 inline-flex items-center space-x-1 px-2.5 py-1 bg-[#163A36]/90 text-white rounded text-[10px] font-bold hover:bg-[#2F6F68] transition backdrop-blur-xs"
+                        >
+                          <CheckCircle2 className="w-3 h-3" />
+                          <span>Upload Resolution Photo</span>
+                        </button>
+                      )}
+                    </>
+                  );
+                })()}
               </div>
 
               {/* Evidence Metadata Drawer */}

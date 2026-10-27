@@ -299,15 +299,15 @@ public class JudgeDemoService {
         Evidence origEv = new Evidence();
         origEv.setIncident(saved);
         origEv.setEvidenceType(EvidenceType.PHOTO);
-        origEv.setFileUrl("https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80");
-        origEv.setFileName("trench_initial.jpg");
+        origEv.setFileUrl("/demo/before_drain.jpg");
+        origEv.setFileName("before_drain.jpg");
         origEv.setMimeType("image/jpeg");
-        origEv.setFileSize(204800L);
-        origEv.setContentHash("7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b");
+        origEv.setFileSize(63645L);
+        origEv.setContentHash("93734373062566157e4b9606c3c76db2c1c5bc6214d8e2353c35e821c82f9d8a");
         origEv.setCapturedAt(LocalDateTime.now().minusHours(4));
         origEv.setLatitude(new BigDecimal("11.9350"));
         origEv.setLongitude(new BigDecimal("79.8300"));
-        origEv.setDescription("Initial hazardous open trench");
+        origEv.setDescription("Initial hazardous open drain overflow");
         origEv.setCreatedAt(LocalDateTime.now().minusHours(4));
         evidenceRepository.save(origEv);
 
@@ -315,11 +315,11 @@ public class JudgeDemoService {
         Evidence resEv = new Evidence();
         resEv.setIncident(saved);
         resEv.setEvidenceType(EvidenceType.PHOTO);
-        resEv.setFileUrl("https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=800&q=80");
-        resEv.setFileName("patch_remote.jpg");
+        resEv.setFileUrl("/demo/after_drain.jpg");
+        resEv.setFileName("after_drain.jpg");
         resEv.setMimeType("image/jpeg");
-        resEv.setFileSize(260000L); // Size variance reduces visual similarity score below 0.40
-        resEv.setContentHash("1f2e3d4c5b6a7f8e9d0c1b2a3f4e5d6c7b8a9f0e1d2c3b4a5f6e7d8c9b0a1f2e");
+        resEv.setFileSize(116141L);
+        resEv.setContentHash("6b8e7c04b7fb3a4ce0c24f867298c6a7cb2a007028bd4049f72af4371f4b8cf6");
         resEv.setCapturedAt(LocalDateTime.now());
         resEv.setLatitude(new BigDecimal("11.9444")); // ~1,240m divergence from original (11.9350, 79.8300)
         resEv.setLongitude(new BigDecimal("79.8362"));
