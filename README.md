@@ -17,13 +17,13 @@
 
 | Attribute | Official Registration Detail |
 | :--- | :--- |
-| **Team ID** | `HSC|PY|00001` |
+| **Team ID** | <code>HSC&#124;PY&#124;00001</code> |
 | **Team Name** | **Dracarus** |
 | **State / UT** | **Puducherry** |
 | **Thematic Area / Problem Statement** | **Urban Infrastructure & Citizen Engagement — Smart Coastal Drainage & Waterlogging Remediation (Governance & Civic Technology Track)** |
 | **Product Name** | **Nirvaha** (*Sanskrit: "Execution, Management, Carrying Through to Completion"*) |
 | **Tagline** | **From Report to Resolution** |
-| **Competition Context** | **VBYLD 2027 — Hack for Social Cause (Stage-I Submission)** & **Code for Communities 2.0** |
+| **Competition Context** | **VBYLD 2027 — Hack for Social Cause (Stage-I Submission)** |
 | **Repository URL** | [https://github.com/Mappillai-Meeran/nirvaha](https://github.com/Mappillai-Meeran/nirvaha) |
 | **Core Vision** | *"Think Global, Hack Local — Technology for Social Transformation"* |
 | **Pilot Geography** | Boulevard Town & Low-Lying Stormwater Outfalls in **Puducherry (Wards 5, 8, 12, Krishna Nagar, Rainbow Nagar)** |
@@ -582,12 +582,12 @@ In adherence to academic and technical honesty, known boundaries of the current 
 ### Team Information
 | Field | Value |
 | :--- | :--- |
-| **Team ID** | `HSC|PY|00001` |
+| **Team ID** | <code>HSC&#124;PY&#124;00001</code> |
 | **Team Name** | **Dracarus** |
 | **State / UT** | **Puducherry** |
 | **Thematic Area / Problem Statement** | **Urban Infrastructure, Smarter Cities & Citizen Engagement — Trust-Aware Civic Intelligence Platform for Verified Municipal Issue Resolution** |
 | **Track** | Governance & Civic Technology |
-| **Target Programme** | VBYLD 2027 — Hack for Social Cause (Stage-I) & Code for Communities 2.0 |
+| **Target Programme** | VBYLD 2027 — Hack for Social Cause (Stage-I Submission) |
 
 ### Hackathon Submission Checklist
 

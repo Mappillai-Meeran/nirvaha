@@ -21,7 +21,7 @@
 
 - **Track**: Governance & Civic Technology
 - **Team**: Dracarus
-- **Context**: VBYLD 2027 — Hack for Social Cause & Code for Communities 2.0
+- **Context**: VBYLD 2027 — Hack for Social Cause (Stage-I Submission)
 
 ---
 

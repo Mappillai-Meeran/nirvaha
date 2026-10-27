@@ -2,7 +2,7 @@
 
 **Date**: September 26, 2026  
 **Status**: OFFICIAL PRODUCT FREEZE — READY FOR SUBMISSION PREPARATION  
-**Target Competitions**: VBYLD 2027 — Hack for Social Cause & Code for Communities 2.0  
+**Target Competition**: VBYLD 2027 — Hack for Social Cause (Stage-I Submission)  
 
 ---
 

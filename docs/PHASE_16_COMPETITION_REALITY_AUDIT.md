@@ -1,7 +1,7 @@
 # NIRVAHA — Phase 16 Competition Reality Audit
 
 **Platform Title**: NIRVAHA — Trust-Aware Civic Intelligence Platform for Verified Issue Resolution  
-**Target Competitions**: VBYLD 2027 — Hack for Social Cause & Code for Communities 2.0  
+**Target Competition**: VBYLD 2027 — Hack for Social Cause (Stage-I Submission)  
 **Audit Date**: September 26, 2026  
 **Final Verdict**: **PASS**
 

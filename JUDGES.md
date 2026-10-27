@@ -6,7 +6,7 @@
 ### Team Registration Profile
 | Field | Registration Detail |
 | :--- | :--- |
-| **Team ID** | `HSC|PY|00001` |
+| **Team ID** | <code>HSC&#124;PY&#124;00001</code> |
 | **Team Name** | **Dracarus** |
 | **State / UT** | **Puducherry** |
 | **Thematic Area / Problem Statement** | **Urban Infrastructure & Citizen Engagement — Smart Coastal Drainage & Waterlogging Remediation (Governance & Civic Technology Track)** |
