@@ -7,6 +7,14 @@
 ## Domain / Track
 **Governance & Civic Technology**
 
+## Official Team Registration
+| Field | Registration Detail |
+| :--- | :--- |
+| **Team ID** | `HSC|PY|00001` |
+| **Team Name** | **Dracarus** |
+| **State / UT** | **Puducherry** |
+| **Thematic Area / Problem Statement** | **Urban Infrastructure & Citizen Engagement — Smart Coastal Drainage & Waterlogging Remediation (Governance & Civic Technology Track)** |
+
 ---
 
 ## Technical Stack At A Glance

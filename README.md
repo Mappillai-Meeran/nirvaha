@@ -13,19 +13,20 @@
 
 ---
 
-### Project Overview
+### Official Hackathon Team & Project Registration
 
-| Attribute | Specification |
+| Attribute | Official Registration Detail |
 | :--- | :--- |
+| **Team ID** | `HSC|PY|00001` |
+| **Team Name** | **Dracarus** |
+| **State / UT** | **Puducherry** |
+| **Thematic Area / Problem Statement** | **Urban Infrastructure & Citizen Engagement — Smart Coastal Drainage & Waterlogging Remediation (Governance & Civic Technology Track)** |
 | **Product Name** | **Nirvaha** (*Sanskrit: "Execution, Management, Carrying Through to Completion"*) |
 | **Tagline** | **From Report to Resolution** |
-| **Competition Track** | **Governance & Civic Technology** |
 | **Competition Context** | **VBYLD 2027 — Hack for Social Cause (Stage-I Submission)** & **Code for Communities 2.0** |
-| **Team Name** | **Team Dracarus** |
 | **Repository URL** | [https://github.com/Mappillai-Meeran/nirvaha](https://github.com/Mappillai-Meeran/nirvaha) |
-| **Primary Theme** | Smarter Cities, Civic Services, Public Service Delivery, Urban Infrastructure & Citizen Engagement |
 | **Core Vision** | *"Think Global, Hack Local — Technology for Social Transformation"* |
-| **Local Focus** | Municipal civic issue reporting, drainage blockage, and urban waterlogging resolution in **Puducherry** |
+| **Pilot Geography** | Boulevard Town & Low-Lying Stormwater Outfalls in **Puducherry (Wards 5, 8, 12, Krishna Nagar, Rainbow Nagar)** |
 
 > **Core Principle:**
 > *Nirvaha does not replace government decision-making. It empowers municipal authorities to make better-informed, transparent, and accountable decisions by providing explainable civic intelligence.*
@@ -56,7 +57,7 @@ Across Indian urban local bodies (ULBs), municipal grievance redressal systems f
 ### The Local Context: Puducherry Coastal Drainage
 Puducherry's low-lying urban coastal terrain, flat topography, and aging canal network create chronic vulnerability to monsoon waterlogging and drainage bottlenecks. During northeast monsoon cloudbursts, key urban corridors—such as **Krishna Nagar** (low-elevation catchment), **Rainbow Nagar**, and sections of the Boulevard town—experience rapid water stagnation when primary stormwater drains and canal outfalls (e.g., Grand Canal) become obstructed with silt or solid waste.
 
-Citizens report blocked drains, overflowing manholes, and stagnant water using varied colloquial descriptions in Tamil (`à®šà®¾à®•à¯à®•à®Ÿà¯ˆ à®…à®Ÿà¯ˆà®ªà¯à®ªà¯`, `à®µà¯†à®³à¯à®³à®®à¯`) or English. Municipal control rooms lack an automated mechanism to group these spatial clusters, cross-reference weather severity, and confirm that desilting or drainage repair was physically executed before closing the ticket.
+Citizens report blocked drains, overflowing manholes, and stagnant water using varied colloquial descriptions in Tamil (`சாக்கடை அடைப்பு` [blocked drain], `வெள்ளம்` [flooding]) or English. Municipal control rooms lack an automated mechanism to group these spatial clusters, cross-reference weather severity, and confirm that desilting or drainage repair was physically executed before closing the ticket.
 
 ### The Specific Problem Nirvaha Solves
 Nirvaha addresses the critical disconnect between **citizen reporting**, **municipal triage**, and **field resolution**. It provides municipal authorities with an objective, explainable decision-support cockpit that clusters complaints, ranks urgency with weather context, records officer rationales, and mandates photo-verified resolution before a case is officially closed.
@@ -81,7 +82,7 @@ CITIZEN REPORT ──► EVIDENCE TRUST ──► CIVIC INTELLIGENCE ──► M
 ### Key Functional Capabilities
 
 1. **Native Multilingual Reporting:**
-   Citizens report issues in their native language—**English, Tamil (à®¤à®®à®¿à®´à¯), Hindi (à¤¹à¤¿à¤¨à¥à¤¦à¥€), Malayalam (à´®à´²à´¯à´¾à´³à´‚), or Telugu (à°¤à±†à°²à±à°—à±)**. The system preserves the original citizen statement verbatim for accountability while normalizing the report to standard municipal departments and categories.
+   Citizens report issues in their native language—**English, Tamil (தமிழ்), Hindi (हिन्दी), Malayalam (മലയാളம்), or Telugu (తెలుగు)**. The system preserves the original citizen statement verbatim for accountability while normalizing the report to standard municipal departments and categories.
 2. **Evidence Trust & Provenance Engine:**
    Every uploaded photograph or document undergoes immediate server-side validation: MIME type enforcement, 10MB payload bounding, and cryptographic **SHA-256 integrity hashing**. Reports are spatially verified via geometric point-in-polygon checks against digitized municipal ward boundaries.
 3. **Spatial Duplicate Clustering Radar:**
@@ -463,7 +464,7 @@ docker compose up --build
 
 1. **Access the Citizen Portal:**
    - Open `http://localhost:5173/` and navigate to **Report an Issue** (`/citizen/report`).
-   - Switch language to **Tamil (à®¤à®®à®¿à®´à¯)** or **Hindi (à¤¹à¤¿à¤¨à¥à¤¦à¥€)** using the top navigation bar.
+   - Switch language to **Tamil (தமிழ்)** or **Hindi (हिन्दी)** using the top navigation bar.
    - Enter a drainage issue: *"Water overflowing from blocked canal near Krishna Nagar junction"*.
    - Click the interactive map to place a pin in Krishna Nagar; attach any sample JPEG/PNG photo.
    - Click **Submit Report**. Observe that the report receives an immediate tracking ID and SHA-256 evidence hash.
@@ -578,10 +579,15 @@ In adherence to academic and technical honesty, known boundaries of the current 
 
 ## 16. Team & Submission Readiness
 
-### Team Dracarus
-- **Track:** Governance & Civic Technology
-- **Project:** Nirvaha: Trust-Aware Civic Intelligence Platform for Verified Issue Resolution
-- **Target Programme:** VBYLD 2027 — Hack for Social Cause & Code for Communities 2.0
+### Team Information
+| Field | Value |
+| :--- | :--- |
+| **Team ID** | `HSC|PY|00001` |
+| **Team Name** | **Dracarus** |
+| **State / UT** | **Puducherry** |
+| **Thematic Area / Problem Statement** | **Urban Infrastructure, Smarter Cities & Citizen Engagement — Trust-Aware Civic Intelligence Platform for Verified Municipal Issue Resolution** |
+| **Track** | Governance & Civic Technology |
+| **Target Programme** | VBYLD 2027 — Hack for Social Cause (Stage-I) & Code for Communities 2.0 |
 
 ### Hackathon Submission Checklist
 

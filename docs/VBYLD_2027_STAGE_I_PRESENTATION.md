@@ -3,7 +3,10 @@
 **Project Name**: NIRVAHA — From Report to Resolution  
 **Full Title**: Nirvaha: Trust-Aware Civic Intelligence Platform for Verified Issue Resolution  
 **Track**: Governance & Civic Technology  
-**Team**: Dracarus  
+**Team ID**: `HSC|PY|00001`  
+**Team Name**: Dracarus  
+**State / UT**: Puducherry  
+**Thematic Area / Problem Statement**: Urban Infrastructure & Citizen Engagement — Smart Coastal Drainage & Waterlogging Remediation  
 
 ---
 
